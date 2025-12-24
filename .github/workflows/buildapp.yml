@@ -69,13 +69,13 @@ jobs:
       - name: Install Dependencies
         run: brew install ldid dpkg make
 
-      - name: Download Theos
-        uses: actions/checkout@v4
-        with:
-          repository: theos/theos
-          ref: master
-          path: theos
-          submodules: recursive
+    #  - name: Download Theos
+    #    uses: actions/checkout@v4
+    #    with:
+    #      repository: theos/theos
+    #      ref: master
+    #      path: theos
+    #      submodules: recursive
 
       - name: iOS SDK Caching
         id: SDK
@@ -87,8 +87,8 @@ jobs:
           key: ${{ env.cache-name }}
           restore-keys: ${{ env.cache-name }}
           
-      - name: Prepare Theos SDK directory
-        run: mkdir -p theos/sdks
+      #- name: Prepare Theos SDK directory
+       # run: mkdir -p theos/sdks
 
 
       - name: Download iOS SDK
@@ -103,19 +103,19 @@ jobs:
         env:
           THEOS: ${{ github.workspace }}/theos
 
-      - name: Download Theos Jailed
-        uses: actions/checkout@v4
-        with:
-          repository: qnblackcat/theos-jailed
-          ref: master
-          path: theos-jailed
-          submodules: recursive
+    #  - name: Download Theos Jailed
+    #    uses: actions/checkout@v4
+    #    with:
+    #      repository: qnblackcat/theos-jailed
+    #      ref: master
+    #      path: theos-jailed
+    #      submodules: recursive
 
-      - name: Install Theos Jailed
-        run: |
-          ./theos-jailed/install
-        env:
-          THEOS: ${{ github.workspace }}/theos
+    #  - name: Install Theos Jailed
+    #    run: |
+    #      ./theos-jailed/install
+    #    env:
+    #      THEOS: ${{ github.workspace }}/theos
         
       - name: Fix Compiling
         run: |
