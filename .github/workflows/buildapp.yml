@@ -86,6 +86,10 @@ jobs:
           path: theos/sdks/
           key: ${{ env.cache-name }}
           restore-keys: ${{ env.cache-name }}
+          
+      - name: Clone Theos
+        run: |
+          git clone --recursive https://github.com/theos/theos.git theos
 
       - name: Download iOS SDK
         if: steps.SDK.outputs.cache-hit != 'true'
