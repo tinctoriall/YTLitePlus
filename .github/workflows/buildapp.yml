@@ -99,23 +99,23 @@ jobs:
           cd sdks
           git sparse-checkout set --no-cone iPhoneOS${{ inputs.sdk_version }}.sdk
           git checkout
-          mv *.sdk $THEOS/sdks
+          mv iPhoneOS${{ inputs.sdk_version }}.sdk "$THEOS/sdks/"
         env:
           THEOS: ${{ github.workspace }}/theos
 
-    #  - name: Download Theos Jailed
-    #    uses: actions/checkout@v4
-    #    with:
-    #      repository: qnblackcat/theos-jailed
-    #      ref: master
-    #      path: theos-jailed
-    #      submodules: recursive
+      - name: Download Theos Jailed
+        uses: actions/checkout@v4
+        with:
+          repository: qnblackcat/theos-jailed
+          ref: master
+          path: theos-jailed
+          submodules: recursive
 
-    #  - name: Install Theos Jailed
-    #    run: |
-    #      ./theos-jailed/install
-    #    env:
-    #      THEOS: ${{ github.workspace }}/theos
+      - name: Install Theos Jailed
+        run: |
+          ./theos-jailed/install
+        env:
+          THEOS: ${{ github.workspace }}/theos
         
       - name: Fix Compiling
         run: |
